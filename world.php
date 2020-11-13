@@ -13,11 +13,26 @@ if($country){
 }
 
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo '<ul>';
-  foreach ($results as $row){
-    echo '<li>'.$row['name'] . ' is ruled by ' . $row['head_of_state'].'</li>';
+echo '<table>';
+  echo '<thead>';
+    echo '<tr>';
+      echo "<th>Name</th>";
+      echo "<th>Continent</th>";
+      echo "<th>Independence</th>";
+      echo "<th>Head of State</th>";
+    echo '</tr>';
+  echo '</thead>';
+  echo '<tbody>';
+  foreach($results as $row){
+    echo "<tr>";
+      echo "<td>".$row['name']."</td>";
+      echo "<td>".$row['continent']."</td>";
+      echo "<td>".$row['independence_year']."</td>";
+      echo "<td>".$row['head_of_state']."</td>";
+    echo "</tr>";
   }
-  echo '</ul>';
+  echo '</tbody>';
+echo '</table>';
 
 
 
