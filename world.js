@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         xhr.open("GET", "world.php?"+requested, true);
-       // xhr.setRequestHeader("content-type", 'application/x-www-form-urlencoded');
         xhr.send();
     });
 
