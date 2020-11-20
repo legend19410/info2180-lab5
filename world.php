@@ -8,7 +8,6 @@ $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $p
 
 if(isset($_GET["context"])){
   $country = filter_var(trim($_GET["country"]), FILTER_SANITIZE_STRING);
-  if($country){
     //$stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
     $stmt = $conn->query("SELECT * FROM countries JOIN cities ON cities.country_code=countries.code WHERE countries.name LIKE '%$country%'");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -30,22 +29,10 @@ if(isset($_GET["context"])){
       }
       echo '</tbody>';
     echo '</table>';
-  }else{
-    $stmt = $conn->query("SELECT * FROM countries");
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    display_country_table($results);
-  }
-
-  
 
 }elseif(isset($_GET["country"])){
   $country = filter_var(trim($_GET["country"]), FILTER_SANITIZE_STRING);
-  if($country){
-    $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
-  }else{
-    $stmt = $conn->query("SELECT * FROM countries");
-  }
-
+  $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
   display_country_table($results);
 
